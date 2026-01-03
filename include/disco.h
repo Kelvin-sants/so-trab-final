@@ -17,16 +17,16 @@ typedef struct _disco_ Disco;
 #endif
 
 // Funções
-Disco *disk_create(int size); 
-void disk_destroy(Disco *disk);
-void disk_reset(Disco *disk);                                    // reinicializa o disco, marcando todos os blocos como livres
-int disk_get_size(const Disco *disk);
-int disk_get_block(const Disco *disk, int index);
-int disk_is_block_free(const Disco *disk, int index);
-int disk_set_block(const Disco *disk, int index, int file_id);   // marca bloco como ocupado por um arquivo
-int disk_free_block(const Disco *disk, int index);               // marca bloco como livre
-int disk_count_free_blocks(const Disco *disk);                   // conta blocos livres
-int disk_has_free_space(const Disco *disk, int n);               // descobrir se disco possui n blocos livres
-const int *disk_get_blocks(const Disco *disk);                   // função para visualizar os blocos do disco
+Disco *criarDisco(int size); 
+void destruirDisco(Disco *disco);
+void reiniciarDisco(Disco *disco);                                  // reinicializa o disco, marcando todos os blocos como livres
+int consultarTamanhoDisco(const Disco *disco);
+int consultarBloco(const Disco *disco, int index);
+int verificarBlocoLivre(const Disco *disco, int index);
+int definirOcupado(const Disco *disco, int index, int id_arquivo);  // marca bloco como ocupado por um arquivo
+int definirBlocoLivre(const Disco *disco, int index);               // marca bloco como livre
+int contarBlocosLivres(const Disco *disco);                         // conta blocos livres
+int verificarEspacoLivre(const Disco *disco, int n);                 // descobrir se disco possui n blocos livres
+const int *visualizarBlocosDisco(const Disco *disco);                // função para visualizar os blocos do disco
 
 #endif
