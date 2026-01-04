@@ -10,11 +10,17 @@
 // Estrutura do disco
 typedef struct _disco_ {
     int tamanho;       // número total de blocos
-    int *blocos;       // vetor de blocos
+    Bloco *blocos;       // vetor de blocos
 } Disco;
+
+typedef struct _bloco_{
+    int dado;
+    int *proximo;
+} Bloco;
 
 #else
 typedef struct _disco_ Disco;
+typedef struct _bloco_ Bloco;
 #endif
 
 // Funções
@@ -29,5 +35,6 @@ int definirBlocoLivre(const Disco *disco, int index);               // marca blo
 int contarBlocosLivres(const Disco *disco);                         // conta blocos livres
 int verificarEspacoLivre(const Disco *disco, int n);                 // descobrir se disco possui n blocos livres
 const int *visualizarBlocosDisco(const Disco *disco);                // função para visualizar os blocos do disco
-
+int definirProximoBloco(const Disco *disco, int index_atual, int index_proximo); // define o próximo bloco encadeado
+int removerProximoBloco(const Disco *disco, int index_atual); // remove o próximo bloco encadeado
 #endif

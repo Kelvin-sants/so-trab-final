@@ -2,6 +2,7 @@
 #define _DISCO_C_
 #include "disco.h"
 #include "stdio.h"
+#include <stdlib.h>
 #define TRUE 1
 #define FALSE 0
 
@@ -16,12 +17,13 @@ Disco *criarDisco(int numBlocos){
         if(disco != NULL){
 
             // alocação do vetor de blocos
-            disco->blocos = (int*)malloc(sizeof(int)*numBlocos);
+            disco->blocos = (Bloco*)malloc(sizeof(Bloco)*numBlocos);
 
             if(disco->blocos != NULL){
                 disco->tamanho = numBlocos;
                 for (i = 0; i < numBlocos; i++){
-                    disco -> blocos[i] = BLOCO_LIVRE;
+                    disco->blocos[i].dado = BLOCO_LIVRE;
+                    disco->blocos[i].proximo = -1;
                 }
                 
                 return disco;
@@ -49,7 +51,8 @@ void reiniciarDisco(Disco *disco) {
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             for (i = 0; i < (disco->tamanho); i++) {
-                disco->blocos[i] = BLOCO_LIVRE;
+                disco->blocos[i].dado = BLOCO_LIVRE;
+                disco->blocos[i].proximo = -1;
             }
         }
         return NULL;
@@ -68,7 +71,7 @@ int consultarValorBloco(const Disco *disco, int index) {
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             if (index >= 0 && index < disco->tamanho) {
-                return disco->blocos[index];
+                return disco->blocos[index].dado;
             }
         }
         return ERRO_DISCO;
@@ -80,7 +83,7 @@ int verificarBlocoLivre(const Disco *disco, int index) {
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             if (index >= 0 && index < disco->tamanho) {
-                if (disco->blocos[index] == BLOCO_LIVRE) {
+                if (disco->blocos[index].dado == BLOCO_LIVRE) {
                     return TRUE;
                 } else {
                     return FALSE;
@@ -96,7 +99,7 @@ int definirBlocoOcupado(const Disco *disco, int index, int id_arquivo) {
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             if (index >= 0 && index < disco->tamanho) {
-                disco->blocos[index] = id_arquivo;
+                disco->blocos[index].dado = id_arquivo;
                 return TRUE;
             }
             return FALSE;
@@ -110,7 +113,8 @@ int definirBlocoLivre(const Disco *disco, int index) {
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             if (index >= 0 && index < disco->tamanho) {
-                disco->blocos[index] = BLOCO_LIVRE;
+                disco->blocos[index].dado = BLOCO_LIVRE;
+                disco->blocos[index].proximo = -1;
                 return TRUE;
             }
             return FALSE;
@@ -127,7 +131,7 @@ int contarBlocosLivres(const Disco *disco) {
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             for (i = 0; i < disco->tamanho; i++) {
-                if (disco->blocos[i] == BLOCO_LIVRE) {
+                if (disco->blocos[i].dado == BLOCO_LIVRE) {
                     contador++;
                 }
             }
@@ -163,4 +167,33 @@ const int *visualizarBlocosDisco(const Disco *disco) { // Retorna apenas uma vis
         }
     }
     return NULL;
+}
+
+int definirProximoBloco(const Disco *disco, int index_atual, int index_proximo){
+    if (disco != NULL) {
+        if (disco->blocos != NULL) {
+            if (index_atual >= 0 && index_atual < disco->tamanho &&
+                index_proximo >= 0 && index_proximo < disco->tamanho) {
+                disco->blocos[index_atual].proximo = index_proximo;
+                return TRUE;
+            }
+            return FALSE;
+        }
+        return ERRO_DISCO;
+    }
+    return ERRO_DISCO;
+}
+
+int removerProximoBloco(const Disco *disco, int index_atual){
+    if (disco != NULL) {
+        if (disco->blocos != NULL) {
+            if (index_atual >= 0 && index_atual < disco->tamanho) {
+                disco->blocos[index_atual].proximo = -1;
+                return TRUE;
+            }
+            return FALSE;
+        }
+        return ERRO_DISCO;
+    }
+    return ERRO_DISCO;
 }
