@@ -1,10 +1,11 @@
 #ifndef _DISCO_H_
 #define _DISCO_H_
 
-#ifdef _DISCO_C_
 // Constantes globais
 #define BLOCO_LIVRE -1
 #define ERRO_DISCO -2
+
+#ifdef _DISCO_C_
 
 // Estrutura do disco
 typedef struct _disco_ {
@@ -19,9 +20,9 @@ typedef struct _disco_ Disco;
 // Funções
 Disco *criarDisco(int size); 
 void destruirDisco(Disco *disco);
-void reiniciarDisco(Disco *disco);                                  // reinicializa o disco, marcando todos os blocos como livres
+void reinicializarDisco(Disco *disco);                                  // reinicializa o disco, marcando todos os blocos como livres
 int consultarTamanhoDisco(const Disco *disco);
-int consultarBloco(const Disco *disco, int index);
+int consultarValorBloco(const Disco *disco, int index);
 int verificarBlocoLivre(const Disco *disco, int index);
 int definirOcupado(const Disco *disco, int index, int id_arquivo);  // marca bloco como ocupado por um arquivo
 int definirBlocoLivre(const Disco *disco, int index);               // marca bloco como livre
