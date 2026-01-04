@@ -30,7 +30,7 @@ int alocarArquivoContiguo(Disco *disco, Arquivo *arquivo) {
             if (blocos_livres_consecutivos == tamanho_arquivo) {
                 for (int j = inicio_bloco; j < inicio_bloco + tamanho_arquivo; j++) {
                     definirBlocoOcupado(disco, j, consultarIdArquivo(arquivo));
-                    adiconarBlocoArquivo(arquivo, j);       //talvez tire isso e só use esse vetor na Alocação indexada
+                    //adiconarBlocoArquivo(arquivo, j);       //talvez tire isso e só use esse vetor na Alocação indexada
                 }
                 //se conseguiu alocar todos os blocos necessários
                 return TRUE;
