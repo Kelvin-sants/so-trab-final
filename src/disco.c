@@ -1,7 +1,7 @@
 // OBJETIVO: Representar o disco; Inicializar os blocos; Liberar blocos; Funções utilitárias relacionadas ao estado do disco
 #define _DISCO_C_
-#include "disco.h"
-#include "stdio.h"
+#include "include/disco.h"
+#include <stdio.h>
 #include <stdlib.h>
 #define TRUE 1
 #define FALSE 0
@@ -52,7 +52,7 @@ void reiniciarDisco(Disco *disco) {
         if (disco->blocos != NULL) {
             for (i = 0; i < (disco->tamanho); i++) {
                 disco->blocos[i].dado = BLOCO_LIVRE;
-                disco->blocos[i].proximo = -1;
+                disco->blocos[i].proximo = NULL;
             }
         }
         return NULL;

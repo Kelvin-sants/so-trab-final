@@ -1,7 +1,7 @@
-// Inicializar o sistema
+#include <stdio.h>
+#include "include/interface.h"
 
-// Executar cenários de teste
-
-// Chamar alocações e remoções
-
-// Gerar saídas para o relatório
+int main(void) {
+    iniciarInterface();
+    return 0;
+}
