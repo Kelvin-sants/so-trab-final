@@ -1,6 +1,6 @@
 #define _ALOCACAO_CONTIGUA_C_
-#include "arquivo.h"
-#include "disco.h"
+#include "include/arquivo.h"
+#include "include/disco.h"
 #include <stdlib.h>
 #define TRUE 1
 #define FALSE -1
