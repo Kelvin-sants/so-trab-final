@@ -31,9 +31,9 @@ void exibirMenu(void) {
     printf("[ 4 ] - Criar arquivo\n");
     printf("[ 5 ] - Listar arquivos\n\n");
 
-    printf("[ 6 ] - Realizar alocação contigua \n");
-    printf("[ 7 ] - Realizar alocação encadeada \n");
-    printf("[ 8 ] - Realizar alocação indexada \n\n");
+    printf("[ 6 ] - Realizar alocacao contigua \n");
+    printf("[ 7 ] - Realizar alocacao encadeada \n");
+    printf("[ 8 ] - Realizar alocacao indexada \n\n");
     printf("[ 9 ] - Remover um arquivo \n\n");
 
     printf("[ 0 ] - Sair\n");
