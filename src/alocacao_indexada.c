@@ -1,6 +1,6 @@
 #define _ALOCACAO_INDEXADA_C_
-#include "include/arquivo.h"
-#include "include/disco.h"
+#include "arquivo.h"
+#include "disco.h"
 #include <stdlib.h>
 #define TRUE 1
 #define FALSE -1

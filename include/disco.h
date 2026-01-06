@@ -7,16 +7,17 @@
 
 #ifdef _DISCO_C_
 
+//estrutura interna do bloco
+typedef struct _bloco_{
+    int dado;
+    int proximo;
+} Bloco;
+
 // Estrutura do disco
 typedef struct _disco_ {
     int tamanho;       // número total de blocos
     Bloco *blocos;       // vetor de blocos
 } Disco;
-
-typedef struct _bloco_{
-    int dado;
-    int *proximo;
-} Bloco;
 
 #else
 typedef struct _disco_ Disco;
@@ -34,7 +35,8 @@ int definirOcupado(const Disco *disco, int index, int id_arquivo);  // marca blo
 int definirBlocoLivre(const Disco *disco, int index);               // marca bloco como livre
 int contarBlocosLivres(const Disco *disco);                         // conta blocos livres
 int verificarEspacoLivre(const Disco *disco, int n);                 // descobrir se disco possui n blocos livres
-const int *visualizarBlocosDisco(const Disco *disco);                // função para visualizar os blocos do disco
+const Bloco *visualizarBlocosDisco(const Disco *disco);                // função para visualizar os blocos do disco
 int definirProximoBloco(const Disco *disco, int index_atual, int index_proximo); // define o próximo bloco encadeado
 int removerProximoBloco(const Disco *disco, int index_atual); // remove o próximo bloco encadeado
+int definirBlocoOcupado(const Disco *disco, int index, int id_arquivo); // marca bloco como ocupado por um arquivo
 #endif

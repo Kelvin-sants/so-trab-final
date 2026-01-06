@@ -1,6 +1,6 @@
 #define _ARQUIVO_C_
-#include "include/arquivo.h"
-#include "include/disco.h"
+#include "arquivo.h"
+#include "disco.h"
 #include <stdlib.h>
 #define TRUE 1
 #define FALSE -1
@@ -41,10 +41,10 @@ void destruirArquivo(Arquivo *arquivo){
         }
         free(arquivo);
     }
-    return NULL;
+    return;
 }
 
-int adiconarBlocoArquivo(Arquivo *arquivo, int indice_bloco){
+int adicionarBlocoArquivo(Arquivo *arquivo, int indice_bloco){
     if (arquivo != NULL){
         if (arquivo->blocos != NULL && indice_bloco >= 0){
             // verifica se há espaço no vetor

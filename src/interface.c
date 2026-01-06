@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "include/interface.h"
-#include "include/disco.h"
-#include "include/arquivo.h"
-#include "include/alocacao_contigua.h"
-#include "include/alocacao_encadeada.h"
-#include "include/alocacao_indexada.h"
+#include "interface.h"
+#include "disco.h"
+#include "arquivo.h"
+#include "alocacao_contigua.h"
+#include "alocacao_encadeada.h"
+#include "alocacao_indexada.h"
 
 #define TRUE 1
 #define FALSE -1
@@ -183,7 +183,7 @@ void iniciarInterface(void) {
                 } else {
                     // Libera os blocos ocupados pelo arquivo no disco
                     for (i = 0; i < consultarTamanhoDisco(disco); i++) {
-                        if (consultarBloco(disco, i) == id) {
+                        if (consultarValorBloco(disco, i) == id) {
                             definirBlocoLivre(disco, i);
                         }
                     }
@@ -244,7 +244,6 @@ static Arquivo *buscarArquivoPorId(Arquivo **arquivos, int quantidade, int id) {
                     return arquivos[i];
                 }
             }
-            return NULL;
         }
     }
     return NULL;
@@ -263,27 +262,26 @@ static void listarArquivos(Arquivo **arquivos, int quantidade) {
             }
         }
     }
-    return NULL;
+    return;
 }
 static void imprimirDisco(const Disco *disco) {
     int i;
-    const int *blocos;      // vetor de blocos
-
+    const Bloco *blocos;      // vetor de blocos
     if (disco != NULL) {
         blocos = visualizarBlocosDisco(disco);
         if (blocos != NULL) {
             printf("Disco:\n");
             for (i = 0; i < consultarTamanhoDisco(disco); i++) {
-                if (blocos[i] == -1) {
+                if (consultarValorBloco(disco, i) == -1) {
                     printf("[ _ ] ");
                 } else {
-                    printf("[ %d ] ", blocos[i]);
+                    printf("[ %d ] ", consultarValorBloco(disco, i));
                 }
             }
             printf("\n");
         }
-        return NULL;
+        return;
     }
-    return NULL;
+    return;
 }
 

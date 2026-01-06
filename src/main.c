@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "include/interface.h"
+#include "interface.h"
 
 int main(void) {
     iniciarInterface();

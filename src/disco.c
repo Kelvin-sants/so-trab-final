@@ -1,6 +1,6 @@
 // OBJETIVO: Representar o disco; Inicializar os blocos; Liberar blocos; Funções utilitárias relacionadas ao estado do disco
 #define _DISCO_C_
-#include "include/disco.h"
+#include "disco.h"
 #include <stdio.h>
 #include <stdlib.h>
 #define TRUE 1
@@ -42,22 +42,22 @@ void destruirDisco(Disco *disco){
         }
         free(disco);
     }
-    return NULL;
+    return;
 }
 
-void reiniciarDisco(Disco *disco) {
+void reinicializarDisco(Disco *disco) {
     int i;
 
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             for (i = 0; i < (disco->tamanho); i++) {
                 disco->blocos[i].dado = BLOCO_LIVRE;
-                disco->blocos[i].proximo = NULL;
+                disco->blocos[i].proximo = -1;
             }
         }
-        return NULL;
+        return;
     }
-    return NULL;
+    return;
 }
 
 int consultarTamanhoDisco(const Disco *disco) {
@@ -160,7 +160,7 @@ int verificarEspacoLivre(const Disco *disco, int n) {
     return ERRO_DISCO;
 }
 
-const int *visualizarBlocosDisco(const Disco *disco) { // Retorna apenas uma visão do disco
+const Bloco *visualizarBlocosDisco(const Disco *disco) { // Retorna apenas uma visão do disco
     if (disco != NULL) {
         if (disco->blocos != NULL) {
             return disco->blocos;
